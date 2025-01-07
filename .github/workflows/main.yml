@@ -9,6 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
+      - name: Use environment variable
+        env:
+          MONG0_LOGIN: ${{ secrets.MONG0_LOGIN }}
+          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          MONGO_HOST: ${{ secrets.MONGO_HOST }}
+          MONGO_PORT: ${{ secrets.MONGO_PORT }}
+          MONGO_AUTHDATABASE: ${{ secrets.MONGO_AUTHDATABASE }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@main
         with:
