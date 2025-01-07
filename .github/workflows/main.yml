@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
       - name: Build Docker Image
         run: |
           docker build \
@@ -29,7 +32,7 @@ jobs:
             -t ghcr.io/alexasky/top-app-api:develop .
 
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v4
         with:
           registry: ghcr.io
           name: alexasky/top-app-api
