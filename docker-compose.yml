@@ -1,8 +1,9 @@
-version: '3'
-service:
+services:
   top.api:
-  image: top-api:latest
-  container_name: top-api
-  restart: always
-  ports: -3000:3000
-  volunes: -./.env:/opt/app/.env
+    image: ghcr.io/alexasky/top-app-api/top-app-api:develop
+    container_name: top-api
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./.env:/opt/app/.env
